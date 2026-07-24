@@ -189,7 +189,29 @@ function initSmoothScroll() {
   });
 }
 
+function initPhoneMask() {
+  var phoneInput = document.getElementById('lead-phone');
+  if (!phoneInput) return;
+
+  phoneInput.addEventListener('input', function(e) {
+    var v = e.target.value.replace(/\D/g, '');
+    if (v.length > 11) v = v.substring(0, 11);
+    
+    if (v.length > 10) {
+      v = v.replace(/^(\d\d)(\d{5})(\d{4})$/, '($1) $2-$3');
+    } else if (v.length > 6) {
+      v = v.replace(/^(\d\d)(\d{4})(\d{0,4})$/, '($1) $2-$3');
+    } else if (v.length > 2) {
+      v = v.replace(/^(\d\d)(\d{0,5})$/, '($1) $2');
+    } else if (v.length > 0) {
+      v = v.replace(/^(\d*)$/, '($1');
+    }
+    e.target.value = v;
+  });
+}
+
 function initFormHandler() {
+  initPhoneMask();
   var form = document.getElementById('lead-form');
   if (!form) return;
 
