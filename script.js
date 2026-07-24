@@ -189,25 +189,35 @@ function initSmoothScroll() {
   });
 }
 
-function initPhoneMask() {
+function initInputValidation() {
+  var nameInput = document.getElementById('lead-name');
   var phoneInput = document.getElementById('lead-phone');
-  if (!phoneInput) return;
 
-  phoneInput.addEventListener('input', function(e) {
-    var v = e.target.value.replace(/\D/g, '');
-    if (v.length > 11) v = v.substring(0, 11);
-    
-    if (v.length > 10) {
-      v = v.replace(/^(\d\d)(\d{5})(\d{4})$/, '($1) $2-$3');
-    } else if (v.length > 6) {
-      v = v.replace(/^(\d\d)(\d{4})(\d{0,4})$/, '($1) $2-$3');
-    } else if (v.length > 2) {
-      v = v.replace(/^(\d\d)(\d{0,5})$/, '($1) $2');
-    } else if (v.length > 0) {
-      v = v.replace(/^(\d*)$/, '($1');
-    }
-    e.target.value = v;
-  });
+  // Validação em tempo real do Nome (Bloqueia números e símbolos especiais)
+  if (nameInput) {
+    nameInput.addEventListener('input', function(e) {
+      e.target.value = e.target.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
+    });
+  }
+
+  // Validação e Máscara em tempo real do WhatsApp (Bloqueia letras e formata (XX) XXXXX-XXXX)
+  if (phoneInput) {
+    phoneInput.addEventListener('input', function(e) {
+      var v = e.target.value.replace(/\D/g, '');
+      if (v.length > 11) v = v.substring(0, 11);
+      
+      if (v.length > 10) {
+        v = v.replace(/^(\d\d)(\d{5})(\d{4})$/, '($1) $2-$3');
+      } else if (v.length > 6) {
+        v = v.replace(/^(\d\d)(\d{4})(\d{0,4})$/, '($1) $2-$3');
+      } else if (v.length > 2) {
+        v = v.replace(/^(\d\d)(\d{0,5})$/, '($1) $2');
+      } else if (v.length > 0) {
+        v = v.replace(/^(\d*)$/, '($1');
+      }
+      e.target.value = v;
+    });
+  }
 }
 
 function sendToGoogleSheets(leadData) {
@@ -232,7 +242,7 @@ function sendToGoogleSheets(leadData) {
 }
 
 function initFormHandler() {
-  initPhoneMask();
+  initInputValidation();
   var form = document.getElementById('lead-form');
   if (!form) return;
 
@@ -246,9 +256,17 @@ function initFormHandler() {
     var name = nameEl ? nameEl.value.trim() : '';
     var phone = phoneEl ? phoneEl.value.trim() : '';
     var company = companyEl && companyEl.value.trim() ? companyEl.value.trim() : 'Não informada';
+    var digitsOnly = phone.replace(/\D/g, '');
 
-    if (!name || !phone) {
-      alert('Por favor, preencha seu nome e WhatsApp para continuar.');
+    if (name.length < 3) {
+      alert('Por favor, informe um nome válido (apenas letras).');
+      if (nameEl) nameEl.focus();
+      return;
+    }
+
+    if (digitsOnly.length < 10) {
+      alert('Por favor, informe um número de WhatsApp válido com DDD (mínimo 10 dígitos).');
+      if (phoneEl) phoneEl.focus();
       return;
     }
 
