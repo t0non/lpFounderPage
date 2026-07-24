@@ -208,6 +208,27 @@ function initPhoneMask() {
   });
 }
 
+function sendToGoogleSheets(leadData) {
+  if (!CONFIG.googleSheetsUrl) return;
+  try {
+    const formData = new FormData();
+    formData.append('data', new Date().toLocaleString('pt-BR'));
+    formData.append('nome', leadData.name);
+    formData.append('whatsapp', leadData.phone);
+    formData.append('empresa', leadData.company);
+
+    fetch(CONFIG.googleSheetsUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData
+    }).catch(function(err) {
+      console.error('[GoogleSheets-Error]', err);
+    });
+  } catch (err) {
+    console.error('[GoogleSheets-Error]', err);
+  }
+}
+
 function initFormHandler() {
   initPhoneMask();
   var form = document.getElementById('lead-form');
@@ -229,6 +250,10 @@ function initFormHandler() {
       return;
     }
 
+    // Salva os dados na planilha do Google Drive
+    sendToGoogleSheets({ name: name, phone: phone, company: company });
+
+    // Monta a mensagem e direciona para o WhatsApp
     var message = 'Olá! Meu nome é ' + name + '.\n' +
                   '📱 WhatsApp: ' + phone + '\n' +
                   '🏢 Empresa: ' + company + '\n' +
