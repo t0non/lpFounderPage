@@ -150,8 +150,6 @@ function initReveal() {
 
 function initScrollProgress() {
   var bar = document.getElementById('scroll-progress');
-  var milestone = document.getElementById('scroll-milestone');
-  var offerSection = document.getElementById('offer');
   if (!bar) return;
   var ticking = false;
   
@@ -161,24 +159,8 @@ function initScrollProgress() {
     var height = document.documentElement.scrollHeight - clientHeight;
     var scrolled = height > 0 ? (winScroll / height) * 100 : 0;
     bar.style.height = scrolled + '%';
-    
-    if (offerSection && milestone) {
-      var triggerPoint = offerSection.offsetTop - (clientHeight / 3);
-      var milestonePercent = height > 0 ? (triggerPoint / height) * 100 : 0;
-      milestonePercent = Math.max(5, Math.min(milestonePercent, 95));
-      milestone.style.top = milestonePercent + '%';
-      
-      if (scrolled >= milestonePercent) {
-        milestone.classList.add('active');
-      } else {
-        milestone.classList.remove('active');
-      }
-    }
-    
     ticking = false;
   }
-  
-  updateProgress();
   
   window.addEventListener('scroll', function() {
     if (!ticking) {
