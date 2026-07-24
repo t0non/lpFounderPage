@@ -6,9 +6,9 @@ Os itens abaixo necessitam de confirmação ou dados oficiais por parte do propr
 
 ## 1. Dados de Contato e Identidade Empresarial
 
-- [ ] **Número de WhatsApp Oficial (CRÍTICO P0):**
-  - **Status Atual:** Placeholder temporário `5531900000000`.
-  - **Ação:** Informar o número oficial de atendimento com DDD para atualizar em `CONFIG.whatsappNumber` no arquivo `script.js`.
+- [x] **Número de WhatsApp Oficial (CONCLUÍDO):**
+  - **Status Atual:** Configurado com sucesso para `5531972247907`.
+  - **Ação:** Redirecionamento ativo em todos os botões do site e no envio do formulário.
 
 - [ ] **E-mail Corporativo Oficial:**
   - **Status Atual:** `contato@founderpage.com.br`.

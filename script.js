@@ -1,10 +1,8 @@
 /* FOUNDERPAGE — script.js (Refatorado para SEO, Acessibilidade e CRO) */
 
 const CONFIG = {
-  // PENDÊNCIA CRÍTICA DE SEO/CRO:
-  // O número de WhatsApp abaixo é temporário/placeholder.
-  // Substitua por um número real com DDD (ex: '55319XXXXXXXX') para ativar atendimento direto.
-  whatsappNumber: '5531900000000',
+  // Número oficial de atendimento WhatsApp FounderPage
+  whatsappNumber: '5531972247907',
   instagramUrl: 'https://instagram.com/founderpage',
   contactEmail: 'mailto:contato@founderpage.com.br',
   defaultMessages: {
