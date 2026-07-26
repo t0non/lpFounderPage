@@ -3,9 +3,9 @@
 ## 1. Visão Geral da Auditoria
 
 * **Data da Auditoria:** 24 de Julho de 2026
-* **Ambiente de Produção / Deploy:** `https://lp-founder-page.vercel.app`
+* **Ambiente de Produção / Deploy:** `https://founderpage.site`
 * **Repositório:** `https://github.com/t0non/lpFounderPage`
-* **Domínio Canônico Atual:** `https://lp-founder-page.vercel.app/` (Temporário até ativação do domínio `founderpage.com.br`)
+* **Domínio Canônico Atual:** `https://founderpage.site/` (Domínio Oficial de Produção)
 
 ---
 
