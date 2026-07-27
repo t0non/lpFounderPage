@@ -71,7 +71,7 @@ ul   { list-style: none; }
 button { font-family: inherit; cursor: pointer; }
 
 /* Contenção de seções */
-#hero, #cases, #offer, #process, #guarantee, #faq, #reviews, #contact, #footer, .contact-section, section {
+#hero, #manifesto, #cases, #offer, #process, #guarantee, #faq, #reviews, #contact, #footer, .contact-section, section {
   width: 100%;
   max-width: 100vw;
   overflow: hidden;
@@ -572,6 +572,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ── 9. SECTION 2: MANIFESTO & 4 PILARES ──────────────── */
+#manifesto,
 #cases {
   background: var(--bg2);
   padding: 112px 0;
@@ -1681,7 +1682,9 @@ button { font-family: inherit; cursor: pointer; }
   }
   .hero-trust { justify-content: center; padding-bottom: 56px; }
 
-  /* Pilares */
+  /* Pilares & Manifesto */
+  #manifesto, #cases { padding: 64px 0; }
+  .primo-manifesto { margin-bottom: 56px; }
   .pillars-grid { grid-template-columns: 1fr; gap: 16px; margin-bottom: 56px; }
   .pillars-comparison-wrap { gap: 24px; margin-bottom: 56px; }
   .pillar-comp-grid { grid-template-columns: 1fr; gap: 16px; }
