@@ -52,6 +52,11 @@ function initLinks() {
     el.href = buildWaLink(item[1]);
     el.target = '_blank';
     el.rel = 'noopener noreferrer';
+    el.addEventListener('click', function() {
+      if (typeof fbq === 'function') {
+        fbq('trackCustom', 'WhatsAppClick');
+      }
+    });
   });
 
   var ig = document.getElementById('ft-ig');
@@ -280,6 +285,11 @@ function initFormHandler() {
                   'Gostaria de receber uma proposta para criação de site com a FounderPage!';
 
     var url = buildWaLink(message);
+    
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead');
+    }
+
     window.open(url, '_blank');
   });
 }
